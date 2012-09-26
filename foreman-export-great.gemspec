@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Foreman::Export::Great::VERSION
   gem.authors       = ["John Axel Eriksson"]
   gem.email         = ["john@insane.se"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Foreman Runit exporter with support for dependent services}
+  gem.summary       = %q{Foreman Runit exporter with support for dependent services}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
