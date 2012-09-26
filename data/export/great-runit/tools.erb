@@ -1,0 +1,32 @@
+function defined {
+    [[ ${!1-X} == ${!1-Y} ]]
+}
+
+function has_value {
+    if defined $1; then
+        if [[ -n ${!1} ]]; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+export OS=`uname | awk '{print tolower($0)}'`
+
+if [ "${OS}" == "darwin" ]; then
+  export SVDIR=${SVDIR:-"/usr/local/var/service"}
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+  `which rbenv` && eval "$(rbenv init -)"
+elif [ "${OS}" == "linux" ]; then
+  export SVDIR=${SVDIR:-"$HOME/service"}
+  [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
+  [[ -s "/etc/profile.d/rbenv.sh" ]] && source "/etc/profile.d/rbenv.sh"
+fi
+
+export RAILS_ROOT=<%= engine.root %>
+
+[[ -s "$HOME/application_environment" ]] && source "$HOME/application_environment"
+[[ -s "$RAILS_ROOT/application_environment" ]] && source "$RAILS_ROOT/application_environment"
+
+export UNICORN_CONFIG=${UNICORN_CONFIG:-"$RAILS_ROOT/unicorn.conf"}
+export RAILS_ENV=${RAILS_ENV:-'development'}

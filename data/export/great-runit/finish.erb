@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source tools
+test -e env/DEPENDENT_SERVICE && DEPENDENT_SERVICE=$(head -1 env/<%= name.upcase %>_DEPENDENT_SERVICE)
+if has_value DEPENDENT_SERVICE; then
+  sv stop $DEPENDENT_SERVICE
+fi

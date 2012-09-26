@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source tools
+test -e env/DEPENDENT_SERVICE && DEPENDENT_SERVICE=$(head -1 env/<%= name.upcase %>_DEPENDENT_SERVICE)
+if has_value DEPENDENT_SERVICE; then
+  sv start $DEPENDENT_SERVICE
+fi
+cd $RAILS_ROOT
+exec chpst -u <%= user %> -e <%= File.join(location, "#{process_directory}/env")  %> <%= process.command %>
