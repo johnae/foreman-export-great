@@ -4,9 +4,9 @@ Custom runit exporter with support for rbenv and runit dependent services. This 
 unexpected things happen - like the fact that we don't use specific ports or several numbered services of the same type,
 so you WILL NOT get anything like:
 
-/path/to/services/<appname>-web-1
-/path/to/services/<appname>-web-2
-/path/to/services/<appname>-web-3
+    /path/to/services/<appname>-web-1
+    /path/to/services/<appname>-web-2
+    /path/to/services/<appname>-web-3
 
 This will ONLY create ONE such service, that's the way we run. We generally use stuff that forks as many processes it needs
 on it's own. We just want runit to supervise the whole thing.
